@@ -426,6 +426,23 @@ footer a {
 
 @media only screen and (min-width: 35rem) {
   /* NAVIGATION STUFF GOES HERE  */
+  #hamburgerBtn {
+    display: none;
+  }
+  #primaryNav {
+    display: flex;
+  }
+  nav ul li a {
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    transition: background 0.5s linear;
+  }
+  nav ul li a {
+    background-color: #1d295f;
+    color: white;
+  }
 }
 @media only screen and (min-width: 64rem) {
   header, nav, main {
