@@ -402,10 +402,28 @@ main h1 {
   color: #7c1d47;
   font-weight: 300;
 }
-main p {
-  padding: 0.5rem 10px;
-  color: #333;
-  line-height: 150%;
+
+.hero {
+  position: relative;
+}
+.hero video {
+  width: 100%;
+  height: auto;
+}
+.hero div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  color: white;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 40%);
+  padding: 10px;
+}
+.hero div h3 {
+  text-shadow: 0 0 2px black;
+}
+.hero div p {
+  text-shadow: 0 0 2px black;
 }
 
 /* --------------------------- FOOTER --------------------------- */
