@@ -111,6 +111,7 @@ nav ul.open{
 /* --------------------------- MAIN --------------------------- */
 main {
     h1 {
+        padding-left: 10px;
         font-size: 1.5rem;
         color: black;
         font-weight: bold
@@ -190,6 +191,10 @@ main {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
+}
+
+h2{
+    padding-left: 10px;
 }
 /* --------------------------- FOOTER --------------------------- */
 #footerWrapper {
