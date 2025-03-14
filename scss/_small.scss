@@ -1,125 +1,299 @@
-/* Prevent adjustments of font size after orientation changes */
+using this html:
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Navigation Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/styles.min.css">
+
+<!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="headerWrapper">
+	<header>
+        <img src="images/logo1x.png" alt="logo">
+		<span>Design Thinking</span>
+        <div id="hamburgerBtn">
+            <span class="top"></span>
+            <span class="bottom"></span>
+        </div>
+	</header>
+</div><!-- end header wrapper -->
+
+    
+    
+<div id="navWrapper">
+    <nav>
+        <ul id="primaryNav">
+            <li><a href="#">Clients</a></li>
+            <li><a href="#">Services</a></li>
+            <li class="active"><a href="#">Best Practices</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</div> <!-- end nav wrapper -->
+
+<div id="mainWrapper">
+    <main>
+
+        <h1>Best Practices</h1>
+        <div class="hero">
+            <video autoplay muted playsinline loop width="800" height="300">
+                <source src="/media/herovideo-hb.webm" type="video/webm" />
+                <source src="/media/herovideo-hb.mp4" type="video/mp4" />
+            </video>
+            <div>
+                <h3>Title Over Video</h3>
+                <p>Super Cool fast car</p>
+            </div>
+        </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/flipcard1.webp" alt="flip1" style="width:300px;height:200px;">
+              </div>
+              <div class="flip-card-back">
+                <h1>John Doe</h1>
+                <p>Architect & Engineer</p>
+                <p>We love that guy</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/flipcard2.webp" alt="flip2" style="width:300px;height:200px;">
+              </div>
+              <div class="flip-card-back">
+                <h1>John Doe</h1>
+                <p>Architect & Engineer</p>
+                <p>We love that guy</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="images/flipcard3.webp" alt="flip3" style="width:300px;height:200px;">
+              </div>
+              <div class="flip-card-back">
+                <h1>John Doe</h1>
+                <p>Architect & Engineer</p>
+                <p>We love that guy</p>
+              </div>
+            </div>
+          </div>
+    </main>
+</div><!-- end main wrapper -->
+    
+<div id="footerWrapper">
+    <footer>
+        <p>Copyright &copy; 2025 Design Thinking Inc. All rights reserved. 
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Clients</a></p>
+    </footer>
+</div> <!-- end footer wrapper -->
+ <script src="js/scripts.js"></script>  
+</body>
+</html> 
+
+And this css:
+/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
 
-/* Apply box layout model to all elements */
+/*  Apply a natural box layout model to all elements  */
 * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
+} // end all elements
 
-/* BODY */
+
+/* --------------------------- BODY --------------------------- */
 body {
-    font-family: 'Spline Sans', sans-serif;
+    font-family: $defaultFont;
+    font-weight: $lightWeight;
     min-width: 320px;
 }
 
-/* HEADER */
-#headerWrapper {
-    border-bottom: 1px solid #ccc;
-}
 
+/* --------------------------- HEADER --------------------------- */
+#headerWrapper {border-bottom: 1px solid $greyColor;}
 header {
     display: grid;
     grid-template-columns: 50px auto 44px;
-    align-items: center;
-    padding: .5rem 1rem;
-}
+    column-gap: $gutter;
+    align-items: center; //vertically
+    padding: .5rem $gutter;
+    span {
+        font-size: 1.6rem;
+        font-weight: $lightWeight;
+        color: $primaryColor;
+    }
+} // end header
 
-#hamburgerBtn {
+
+/* --------------------------- NAVIGATION STUFF GOES HERE --------------------------- */
+#hamburgerBtn{
     position: relative;
     height: 44px;
     width: 44px;
     cursor: pointer;
     border: 1px solid #ddd;
     border-radius: 10px;
-}
+    .top, .bottom{
+        position: absolute;
+        height: 2px;
+        width: 50%;
+        left: 25%;
+        background-color: #777;
+        transition: all .3s ease;
+    }
+    .top{
+        top: 33%;
+    }
+    .bottom{
+        bottom: 33%;
+    }
+}//end hamburger
 
-nav ul {
+#hamburgerBtn.open{
+    .top{
+        transform: rotate(45deg);
+        top: 48%;
+        width: 60%;
+        left: 20%;
+    }
+    .bottom{
+        transform: rotate(-45deg);
+        top: 48%;
+        width: 60%;
+        left: 20%;
+        
+    }
+}//end open
+nav ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: none;
-}
+    li a{
+        color: $primaryColor;
+        display: block;
+        padding: .75rem $gutter;
+        text-decoration: none;
+        border-bottom: 1px solid $greyColor;
+    }
+    li.active a{
+        color: $secondaryColor;
+    }
+}// end nav
 
-nav ul.open {
+//Show the menu links
+nav ul.open{
     display: block;
 }
 
-/* HERO SECTION */
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------- MAIN --------------------------- */
+main {
+    h1 {
+        padding: 1rem $gutter.5rem $gutter;
+        font-size: 1.5rem;
+        color: $secondaryColor;
+        font-weight: $lightWeight
+    }
+   
+}// end main
+
 .hero {
     position: relative;
-}
-
-.hero video {
-    width: 100%;
-    height: auto;
-}
-
-.hero div {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0;
-    color: white;
-    background: linear-gradient(90deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0.2) 40%);
-    padding: 10px;
-}
-/* FLIP CARDS */
-.flip-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  
-    align-items: center;      
-    gap: 20px;                
-    margin: 0 auto;           
-    max-width: 960px;         
-    min-height: 60vh;         
-    padding: 20px;            
-    width: 100%;             
-}
+    video {
+        width: 100%;
+        height: auto;
+    }
+    div{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0;
+        color: white;
+        background: linear-gradient(90deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0.2) 40%);
+        padding: 10px;
+        h3{text-shadow: 0 0 2px black;}
+        p{text-shadow: 0 0 2px black;}
+    }
+}//end of hero
 
 .flip-card {
     background-color: transparent;
     width: 300px;
     height: 200px;
-    border: 3px solid #529ec2;
-    perspective: 1000px;
-    margin: 10px;   
-}
-
-.flip-card-inner {
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
-}
-
-.flip-card-front {
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
     background-color: #bbb;
     color: black;
-}
-
-.flip-card-back {
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
-}
+  }
+  
 /* --------------------------- FOOTER --------------------------- */
 #footerWrapper {
     background-color: $primaryColor
